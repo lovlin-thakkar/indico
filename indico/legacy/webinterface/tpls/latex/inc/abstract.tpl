@@ -104,9 +104,10 @@
 </%block>
 
 
-${latex_escape(_("Submitted by {0} on {1}"), ignore_braces=True).format(
+${latex_escape(_("Submitted by {0} ({2}) on {1}"), ignore_braces=True).format(
     r"\textbf{{{0}}}".format(latex_escape(abstract.submitter.get_full_name(abbrev_first_name=False, show_title=True).encode('utf-8'))),
-    r"\textbf{{{0}}}".format(latex_escape(abstract.submitted_dt.strftime("%A %d %B %Y"))))}
+    r"\textbf{{{0}}}".format(latex_escape(abstract.submitted_dt.strftime("%A %d %B %Y"))), 
+    r"\textbf{{{0}}}".format(latex_escape(abstract.submitter.email.encode('utf-8'))))}
 % if abstract.modified_dt:
     \fancyfoot[C]{\color{gray} ${_("Last modified:") | latex_escape} ${abstract.modified_dt.strftime("%A %d %B %Y") | latex_escape}}
 % endif
